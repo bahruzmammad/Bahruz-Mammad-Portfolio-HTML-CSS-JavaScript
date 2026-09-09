@@ -1,8 +1,5 @@
 $(function () {
   "use strict";
-  /* ========================================
-       ELEMENTS
-    ======================================== */
   const $window = $(window);
   const $html = $("html");
   const $sections = $("main section");
@@ -13,12 +10,9 @@ $(function () {
   const $projectsGrid = $("#github-projects");
   const $themeToggle = $("#theme-toggle");
   const $themeColor = $("#theme-color");
-  const $contactForm = $(".contact-form");
+  const $contactForm = $("#contact-form");
   const $contactButton = $(".contact-button");
   const $formStatus = $(".form-status");
-  /* ========================================
-       SETTINGS
-    ======================================== */
   const MOBILE_BREAKPOINT = 800;
   const ABOUT_MIN_STEP = 110;
   const ABOUT_MAX_STEP = 165;
@@ -33,9 +27,6 @@ $(function () {
   let ticking = false;
   let resizeTimer = null;
   let revealObserver = null;
-  /* ========================================
-       HELPERS
-    ======================================== */
   function isMobile() {
     return window.innerWidth <= MOBILE_BREAKPOINT;
   }
@@ -61,7 +52,7 @@ $(function () {
       .replace(/'/g, "&#039;");
   }
   function formatRepositoryName(name) {
-    return name
+    return String(name || "")
       .replace(/[-_]+/g, " ")
       .replace(/\s+/g, " ")
       .trim()
@@ -69,9 +60,6 @@ $(function () {
         return letter.toUpperCase();
       });
   }
-  /* ========================================
-       THEME
-    ======================================== */
   function getSystemTheme() {
     if (
       window.matchMedia &&
@@ -107,10 +95,6 @@ $(function () {
     }
     const isDark = theme === "dark";
     const $icon = $themeToggle.find(".theme-icon");
-    /*
-     * Light mode  -> moon icon
-     * Dark mode   -> sun icon
-     */
     $icon.text(isDark ? "☀" : "☾");
     $themeToggle.attr("aria-pressed", String(isDark));
     $themeToggle.attr(
@@ -147,11 +131,6 @@ $(function () {
   if ($themeToggle.length) {
     $themeToggle.on("click", toggleTheme);
   }
-  /*
-   * Follow system preference only when
-   * the user has not manually selected
-   * a theme.
-   */
   if (window.matchMedia) {
     const colorScheme = window.matchMedia("(prefers-color-scheme: dark)");
     function handleSystemThemeChange(event) {
@@ -166,9 +145,6 @@ $(function () {
       colorScheme.addListener(handleSystemThemeChange);
     }
   }
-  /* ========================================
-       GITHUB API
-    ======================================== */
   function getGitHubRepos() {
     if (!$projectsGrid.length) {
       return;
@@ -177,9 +153,7 @@ $(function () {
     $projectsGrid.html(`
             <article class="project-card github-loading">
                 <div class="project-content">
-                    <span class="project-number">
-                        —
-                    </span>
+                    <span class="project-number">—</span>
                     <h3>
                         Loading projects...
                     </h3>
@@ -194,19 +168,15 @@ $(function () {
                 </div>
             </article>
         `);
-    fetch(GITHUB_API_URL, {
+    $.ajax({
+      url: GITHUB_API_URL,
       method: "GET",
+      dataType: "json",
       headers: {
         Accept: "application/vnd.github+json",
       },
     })
-      .then(function (response) {
-        if (!response.ok) {
-          throw new Error(`GitHub API error: ${response.status}`);
-        }
-        return response.json();
-      })
-      .then(function (repos) {
+      .done(function (repos) {
         if (!Array.isArray(repos)) {
           throw new Error("Invalid GitHub API response.");
         }
@@ -217,28 +187,20 @@ $(function () {
           .slice(0, 9);
         renderGitHubProjects(projects);
       })
-      .catch(function (error) {
-        console.error("GitHub API:", error);
+      .fail(function (xhr, status, error) {
+        console.error("GitHub API:", status, error);
         renderGitHubError();
       });
   }
-  /* ========================================
-       RENDER GITHUB PROJECTS
-    ======================================== */
   function renderGitHubProjects(repos) {
     if (!$projectsGrid.length) {
       return;
     }
-    /*
-     * No repositories.
-     */
     if (!repos.length) {
       $projectsGrid.html(`
                 <article class="project-card reveal visible">
                     <div class="project-content">
-                        <span class="project-number">
-                            —
-                        </span>
+                        <span class="project-number">—</span>
                         <h3>
                             No projects found
                         </h3>
@@ -264,9 +226,6 @@ $(function () {
       $projectsGrid.attr("aria-busy", "false");
       return;
     }
-    /*
-     * Build project cards.
-     */
     const html = repos
       .map(function (repo, index) {
         const number = String(index + 1).padStart(2, "0");
@@ -277,9 +236,7 @@ $(function () {
         const stars = Number(repo.stargazers_count) || 0;
         const githubUrl = escapeHtml(repo.html_url);
         return `
-                        <article
-                            class="project-card reveal"
-                        >
+                        <article class="project-card reveal">
                             <div class="project-content">
                                 <span class="project-number">
                                     ${number}
@@ -314,18 +271,11 @@ $(function () {
       .join("");
     $projectsGrid.html(html);
     $projectsGrid.attr("aria-busy", "false");
-    /*
-     * Allow the browser to paint
-     * the new cards before observing.
-     */
     window.requestAnimationFrame(function () {
       setupRevealObserver();
       setupProjectHover();
     });
   }
-  /* ========================================
-       GITHUB ERROR
-    ======================================== */
   function renderGitHubError() {
     if (!$projectsGrid.length) {
       return;
@@ -333,9 +283,7 @@ $(function () {
     $projectsGrid.html(`
             <article class="project-card reveal visible">
                 <div class="project-content">
-                    <span class="project-number">
-                        —
-                    </span>
+                    <span class="project-number">—</span>
                     <h3>
                         Projects unavailable
                     </h3>
@@ -360,17 +308,10 @@ $(function () {
         `);
     $projectsGrid.attr("aria-busy", "false");
   }
-  /* ========================================
-       ABOUT HEIGHT
-    ======================================== */
   function updateAboutHeight() {
     if (!$about.length) {
       return;
     }
-    /*
-     * Sticky About is disabled
-     * on mobile devices.
-     */
     if (isMobile()) {
       $about.css("height", "auto");
       return;
@@ -381,25 +322,14 @@ $(function () {
     }
     const viewportHeight = $window.height();
     const step = getAboutStep();
-    /*
-     * Add enough scroll space
-     * for each paragraph.
-     */
     const extraHeight = Math.max(0, $paragraphs.length - 1) * step;
     const sectionHeight = viewportHeight + extraHeight + getHeaderHeight();
     $about.css("height", `${sectionHeight}px`);
   }
-  /* ========================================
-       ABOUT PARAGRAPH STATE
-    ======================================== */
   function updateAboutParagraphs() {
     if (!$about.length || !$paragraphs.length) {
       return;
     }
-    /*
-     * Mobile:
-     * show the first paragraph.
-     */
     if (isMobile()) {
       $paragraphs.removeClass("active").first().addClass("active");
       return;
@@ -410,9 +340,6 @@ $(function () {
     }
     const scrollTop = $window.scrollTop();
     const relativeScroll = scrollTop - aboutOffset.top;
-    /*
-     * Before About begins.
-     */
     if (relativeScroll <= 0) {
       $paragraphs.removeClass("active").first().addClass("active");
       return;
@@ -422,15 +349,12 @@ $(function () {
     activeIndex = clamp(activeIndex, 0, $paragraphs.length - 1);
     $paragraphs.each(function (index) {
       const $paragraph = $(this);
-      const shouldBeActive = index === activeIndex;
-      if ($paragraph.hasClass("active") !== shouldBeActive) {
-        $paragraph.toggleClass("active", shouldBeActive);
+      const active = index === activeIndex;
+      if ($paragraph.hasClass("active") !== active) {
+        $paragraph.toggleClass("active", active);
       }
     });
   }
-  /* ========================================
-       ACTIVE NAVIGATION
-    ======================================== */
   function updateActiveNav() {
     if (!$sections.length || !$navLinks.length) {
       return;
@@ -451,9 +375,6 @@ $(function () {
         currentId = $section.attr("id");
       }
     });
-    /*
-     * Home fallback.
-     */
     if (!currentId) {
       const $home = $("#home");
       if ($home.length) {
@@ -463,9 +384,6 @@ $(function () {
         }
       }
     }
-    /*
-     * Final fallback.
-     */
     if (!currentId && $sections.length) {
       currentId = $sections.last().attr("id");
     }
@@ -474,9 +392,6 @@ $(function () {
       $navLinks.filter(`[href="#${currentId}"]`).addClass("active");
     }
   }
-  /* ========================================
-       SMOOTH NAVIGATION
-    ======================================== */
   $navLinks.on("click", function (event) {
     const href = $(this).attr("href");
     if (!href || href === "#" || !href.startsWith("#")) {
@@ -500,9 +415,6 @@ $(function () {
       "swing",
     );
   });
-  /* ========================================
-       REVEAL OBSERVER
-    ======================================== */
   function setupRevealObserver() {
     if (revealObserver) {
       revealObserver.disconnect();
@@ -512,10 +424,6 @@ $(function () {
     if (!$elements.length) {
       return;
     }
-    /*
-     * Fallback when IntersectionObserver
-     * is not supported.
-     */
     if (!("IntersectionObserver" in window)) {
       $elements.addClass("visible");
       return;
@@ -528,7 +436,9 @@ $(function () {
           }
           const $element = $(entry.target);
           $element.addClass("visible");
-          revealObserver.unobserve(entry.target);
+          if (revealObserver) {
+            revealObserver.unobserve(entry.target);
+          }
         });
       },
       {
@@ -544,17 +454,11 @@ $(function () {
       revealObserver.observe(this);
     });
   }
-  /* ========================================
-       PROJECT HOVER
-    ======================================== */
   function setupProjectHover() {
     const $projectCards = $(".project-card");
     if (!$projectCards.length) {
       return;
     }
-    /*
-     * Remove old handlers first.
-     */
     $projectCards.off(".projectHover");
     $projectCards.on("mouseenter.projectHover", function () {
       const $card = $(this);
@@ -567,38 +471,76 @@ $(function () {
       $(this).find(".project-tech span").css("transition-delay", "0ms");
     });
   }
-  /* ========================================
-       CONTACT FORM
-    ======================================== */
-  $contactForm.on("submit", function (event) {
-    event.preventDefault();
-    const form = this;
-    /*
-     * Browser-native validation.
-     */
-    if (!form.checkValidity()) {
-      form.reportValidity();
+  function setContactState(state, message, buttonText) {
+    $contactButton.prop("disabled", state === "sending").text(buttonText);
+    $formStatus.text(message);
+  }
+  function submitContactForm() {
+    if (!$contactForm.length) {
       return;
     }
-    const originalText = $contactButton.text();
-    $contactButton.prop("disabled", true).text("Sending...");
-    $formStatus.text("");
-    /*
-     * Simulated request.
-     */
-    window.setTimeout(function () {
-      $contactButton.prop("disabled", false).text("Message Sent ✓");
-      $formStatus.text("Your message has been prepared successfully.");
-      form.reset();
-      window.setTimeout(function () {
-        $contactButton.text(originalText);
-        $formStatus.text("");
-      }, 3000);
-    }, 1000);
-  });
-  /* ========================================
-       SCROLL
-    ======================================== */
+    $contactForm.on("submit", function (event) {
+      event.preventDefault();
+      const form = this;
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+      const endpoint = String(form.action || "").trim();
+      if (!endpoint) {
+        console.error("Formspree endpoint is missing.");
+        setContactState(
+          "error",
+          "Contact form is not configured.",
+          "Send Message →",
+        );
+        return;
+      }
+      const formData = new FormData(form);
+      setContactState("sending", "Sending message...", "Sending...");
+      $.ajax({
+        url: endpoint,
+        method: "POST",
+        data: formData,
+        processData: false,
+        contentType: false,
+        dataType: "json",
+        headers: {
+          Accept: "application/json",
+        },
+      })
+        .done(function () {
+          form.reset();
+          setContactState(
+            "success",
+            "Your message has been sent successfully.",
+            "Message Sent ✓",
+          );
+          window.setTimeout(function () {
+            setContactState("idle", "", "Send Message →");
+          }, 3500);
+        })
+        .fail(function (xhr) {
+          let message = "Unable to send your message. Please try again.";
+          if (
+            xhr &&
+            xhr.responseJSON &&
+            Array.isArray(xhr.responseJSON.errors)
+          ) {
+            const errors = xhr.responseJSON.errors
+              .map(function (error) {
+                return error.message;
+              })
+              .filter(Boolean);
+            if (errors.length) {
+              message = errors.join(" ");
+            }
+          }
+          console.error("Contact form:", xhr);
+          setContactState("error", message, "Send Message →");
+        });
+    });
+  }
   function handleScroll() {
     if (ticking) {
       return;
@@ -611,9 +553,6 @@ $(function () {
     });
   }
   $window.on("scroll", handleScroll);
-  /* ========================================
-       RESIZE
-    ======================================== */
   $window.on("resize", function () {
     window.clearTimeout(resizeTimer);
     resizeTimer = window.setTimeout(function () {
@@ -622,22 +561,17 @@ $(function () {
       updateActiveNav();
     }, 150);
   });
-  /* ========================================
-       INITIALIZE
-    ======================================== */
   function initialize() {
     initializeTheme();
     updateAboutHeight();
     updateAboutParagraphs();
     updateActiveNav();
+    submitContactForm();
     window.requestAnimationFrame(function () {
       setupRevealObserver();
       setupProjectHover();
     });
     getGitHubRepos();
   }
-  /* ========================================
-       START
-    ======================================== */
   initialize();
 });

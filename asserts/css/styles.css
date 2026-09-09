@@ -1,6 +1,3 @@
-/* ========================================
-   RESET
-======================================== */
 * {
     margin: 0;
     padding: 0;
@@ -25,9 +22,6 @@
     --button-primary-background: #1d1d1f;
     --button-primary-color: #ffffff;
     --button-secondary-background: rgba(255, 255, 255, 0.8);
-    --toggle-background: #e9e9eb;
-    --toggle-thumb: #ffffff;
-    --toggle-icon: #6e6e73;
     --shadow-soft: 0 12px 40px rgba(0, 0, 0, 0.04);
     --shadow-card: 0 18px 45px rgba(0, 0, 0, 0.06);
     --shadow-image: 0 20px 60px rgba(0, 0, 0, 0.08);
@@ -37,9 +31,6 @@
     --ease-apple: cubic-bezier(0.22, 1, 0.36, 1);
     color-scheme: light;
 }
-/* ========================================
-   DARK THEME
-======================================== */
 html[data-theme="dark"] {
     --text-primary: #f5f5f7;
     --text-secondary: #a1a1a6;
@@ -57,17 +48,11 @@ html[data-theme="dark"] {
     --button-primary-background: #f5f5f7;
     --button-primary-color: #000000;
     --button-secondary-background: rgba(255, 255, 255, 0.06);
-    --toggle-background: #363638;
-    --toggle-thumb: #f5f5f7;
-    --toggle-icon: #a1a1a6;
     --shadow-soft: 0 12px 40px rgba(0, 0, 0, 0.28);
     --shadow-card: 0 18px 45px rgba(0, 0, 0, 0.32);
     --shadow-image: 0 20px 60px rgba(0, 0, 0, 0.35);
     color-scheme: dark;
 }
-/* ========================================
-   BASE
-======================================== */
 html {
     scroll-behavior: smooth;
     scroll-padding-top: var(--header-height);
@@ -118,9 +103,6 @@ ul {
     color: var(--selection-color);
     background: var(--selection-background);
 }
-/* ========================================
-   ACCESSIBILITY
-======================================== */
 :focus-visible {
     outline: 3px solid var(--text-primary);
     outline-offset: 4px;
@@ -132,16 +114,10 @@ textarea:focus-visible {
     outline: 3px solid var(--text-primary);
     outline-offset: 4px;
 }
-/* ========================================
-   CONTAINER
-======================================== */
 .container {
     width: min(calc(100% - 48px), var(--container-width));
     margin-inline: auto;
 }
-/* ========================================
-   HEADER
-======================================== */
 .header-nav {
     position: fixed;
     inset: 0 0 auto;
@@ -157,15 +133,14 @@ textarea:focus-visible {
         border-color 0.45s var(--ease-apple);
 }
 .navbar {
+    width: min(calc(100% - 48px), var(--container-width));
     height: 100%;
+    margin-inline: auto;
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 24px;
 }
-/* ========================================
-   LOGO
-======================================== */
 .logo {
     flex-shrink: 0;
     color: var(--text-primary);
@@ -181,18 +156,12 @@ textarea:focus-visible {
     opacity: 0.65;
     transform: translate3d(0, -1px, 0);
 }
-/* ========================================
-   NAV RIGHT
-======================================== */
 .nav-right {
     min-width: 0;
     display: flex;
     align-items: center;
     gap: 24px;
 }
-/* ========================================
-   NAV LIST
-======================================== */
 .nav-list {
     display: flex;
     align-items: center;
@@ -231,9 +200,6 @@ textarea:focus-visible {
 .nav-list a.active::after {
     width: 14px;
 }
-/* ========================================
-   THEME SWITCHER
-======================================== */
 .theme-switcher {
     flex-shrink: 0;
     display: flex;
@@ -267,8 +233,6 @@ textarea:focus-visible {
 }
 .theme-icon-button .theme-icon {
     display: inline-block;
-    width: auto;
-    height: auto;
     color: var(--text-primary);
     font-size: 20px;
     line-height: 1;
@@ -284,9 +248,6 @@ textarea:focus-visible {
 html[data-theme="dark"] .theme-icon-button:hover .theme-icon {
     transform: rotate(-12deg);
 }
-/* ========================================
-   GLOBAL SECTION
-======================================== */
 .section {
     min-height: 100vh;
     padding: 140px 0;
@@ -315,9 +276,6 @@ html[data-theme="dark"] .theme-icon-button:hover .theme-icon {
     font-weight: 600;
     transition: color 0.45s var(--ease-apple);
 }
-/* ========================================
-   HERO
-======================================== */
 .hero {
     min-height: 100vh;
     padding-top: var(--header-height);
@@ -374,9 +332,6 @@ html[data-theme="dark"] .theme-icon-button:hover .theme-icon {
     line-height: 1.55;
     transition: color 0.45s var(--ease-apple);
 }
-/* ========================================
-   BUTTONS
-======================================== */
 .hero-buttons {
     display: flex;
     flex-wrap: wrap;
@@ -423,9 +378,6 @@ html[data-theme="dark"] .button-primary:hover {
 .button-secondary:hover {
     background: var(--background-light);
 }
-/* ========================================
-   HERO IMAGE
-======================================== */
 .hero-image {
     display: flex;
     justify-content: center;
@@ -450,9 +402,6 @@ html[data-theme="dark"] .button-primary:hover {
 html[data-theme="dark"] .hero-image img {
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
 }
-/* ========================================
-   ABOUT
-======================================== */
 .about {
     position: relative;
     min-height: 100vh;
@@ -525,9 +474,6 @@ html[data-theme="dark"] .about::after {
     transform: translate3d(5px, 0, 0) scale(1);
     filter: blur(0);
 }
-/* ========================================
-   PROJECTS
-======================================== */
 .projects {
     background: var(--background-light);
     transition: background-color 0.45s var(--ease-apple);
@@ -538,9 +484,6 @@ html[data-theme="dark"] .about::after {
     gap: 24px;
     min-height: 380px;
 }
-/* ========================================
-   PROJECT CARD
-======================================== */
 .project-card {
     position: relative;
     min-height: 380px;
@@ -584,9 +527,6 @@ html[data-theme="dark"] .project-card::before {
     border-color: var(--border-strong);
     box-shadow: var(--shadow-card);
 }
-/* ========================================
-   PROJECT CONTENT
-======================================== */
 .project-content {
     position: relative;
     z-index: 1;
@@ -633,9 +573,6 @@ html[data-theme="dark"] .project-card::before {
     overflow: hidden;
     transition: color 0.45s var(--ease-apple);
 }
-/* ========================================
-   PROJECT TECHNOLOGIES
-======================================== */
 .project-tech {
     display: flex;
     flex-wrap: wrap;
@@ -658,9 +595,6 @@ html[data-theme="dark"] .project-card::before {
     transform: translate3d(0, -2px, 0);
     background: var(--surface-hover);
 }
-/* ========================================
-   PROJECT LINK
-======================================== */
 .project-link {
     width: fit-content;
     margin-top: auto;
@@ -676,9 +610,6 @@ html[data-theme="dark"] .project-card::before {
     opacity: 0.6;
     transform: translate3d(4px, 0, 0);
 }
-/* ========================================
-   GITHUB LOADING
-======================================== */
 .github-loading {
     pointer-events: none;
     opacity: 1 !important;
@@ -693,9 +624,6 @@ html[data-theme="dark"] .project-card::before {
 .github-loading .project-content p {
     color: var(--text-tertiary);
 }
-/* ========================================
-   SKILLS
-======================================== */
 .skills {
     background: var(--background);
     transition: background-color 0.45s var(--ease-apple);
@@ -756,9 +684,6 @@ html[data-theme="dark"] .project-card::before {
     background: var(--button-primary-background);
     transform: translate3d(0, -2px, 0);
 }
-/* ========================================
-   CONTACT
-======================================== */
 .contact {
     background: var(--background-light);
     transition: background-color 0.45s var(--ease-apple);
@@ -804,6 +729,7 @@ html[data-theme="dark"] .project-card::before {
     color: var(--text-primary);
     font-size: 17px;
     font-weight: 500;
+    overflow-wrap: anywhere;
     transition:
         opacity 0.3s var(--ease-apple),
         transform 0.3s var(--ease-apple),
@@ -827,9 +753,6 @@ html[data-theme="dark"] .project-card::before {
     opacity: 0.8;
     transform: translate3d(0, 0, 0);
 }
-/* ========================================
-   CV DOWNLOAD
-======================================== */
 .contact-item a[download] {
     font-weight: 600;
 }
@@ -843,9 +766,6 @@ html[data-theme="dark"] .project-card::before {
 .contact-item a[download]:hover::after {
     transform: translate3d(0, 2px, 0);
 }
-/* ========================================
-   CONTACT FORM
-======================================== */
 .contact-form {
     display: flex;
     flex-direction: column;
@@ -907,9 +827,6 @@ html[data-theme="dark"] .project-card::before {
     border-color: var(--text-primary);
     box-shadow: 0 0 0 4px rgba(128, 128, 128, 0.12);
 }
-/* ========================================
-   CONTACT BUTTON
-======================================== */
 .contact-button {
     align-self: flex-start;
     min-height: 48px;
@@ -945,9 +862,6 @@ html[data-theme="dark"] .contact-button:hover {
     color: var(--text-secondary);
     font-size: 13px;
 }
-/* ========================================
-   FOOTER
-======================================== */
 .footer {
     padding: 32px 0;
     background: var(--background);
@@ -955,6 +869,12 @@ html[data-theme="dark"] .contact-button:hover {
     transition:
         background-color 0.45s var(--ease-apple),
         border-color 0.45s var(--ease-apple);
+}
+.footer .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
 }
 .footer p {
     color: var(--text-tertiary);
@@ -968,9 +888,45 @@ html[data-theme="dark"] .contact-button:hover {
     opacity: 0.75;
     transform: translate3d(0, -1px, 0);
 }
-/* ========================================
-   REVEAL
-======================================== */
+.footer-socials {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 8px;
+    flex-shrink: 0;
+}
+.footer-socials a {
+    width: 38px;
+    height: 38px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary);
+    background: transparent;
+    border-radius: 50%;
+    transition:
+        color 0.3s var(--ease-apple),
+        background-color 0.3s var(--ease-apple),
+        transform 0.3s var(--ease-apple);
+}
+.footer-socials a:hover {
+    color: var(--text-primary);
+    background: var(--background-light);
+    transform: translate3d(0, -2px, 0);
+}
+.footer-socials a:active {
+    transform: scale(0.92);
+}
+.footer-socials a:focus-visible {
+    outline: 2px solid var(--text-primary);
+    outline-offset: 3px;
+}
+.footer-socials svg {
+    width: 19px;
+    height: 19px;
+    display: block;
+    flex-shrink: 0;
+}
 .reveal {
     opacity: 0;
     transform: translate3d(0, 28px, 0);
@@ -983,27 +939,17 @@ html[data-theme="dark"] .contact-button:hover {
     opacity: 1;
     transform: translate3d(0, 0, 0);
 }
-/*
- * GitHub loading state.
- */
 .github-loading.reveal,
 .github-loading.reveal.visible {
     opacity: 1 !important;
     transform: none !important;
     transition-delay: 0s !important;
 }
-/*
- * About paragraphs use their own
- * animation system.
- */
 .about-body p.reveal {
     opacity: 1;
     transform: none;
     transition: none;
 }
-/* ========================================
-   TABLET
-======================================== */
 @media (max-width: 1100px) {
     .nav-right {
         gap: 18px;
@@ -1027,9 +973,6 @@ html[data-theme="dark"] .contact-button:hover {
         gap: 48px;
     }
 }
-/* ========================================
-   TABLET / MOBILE
-======================================== */
 @media (max-width: 800px) {
     :root {
         --header-height: 58px;
@@ -1061,9 +1004,6 @@ html[data-theme="dark"] .contact-button:hover {
         flex-shrink: 0;
         font-size: 13px;
     }
-    /* ====================================
-       HERO
-    ==================================== */
     .hero {
         min-height: auto;
         padding: 120px 0 80px;
@@ -1078,9 +1018,6 @@ html[data-theme="dark"] .contact-button:hover {
     .hero-image img {
         display: none;
     }
-    /* ====================================
-       ABOUT
-    ==================================== */
     .about {
         min-height: auto;
     }
@@ -1112,9 +1049,6 @@ html[data-theme="dark"] .contact-button:hover {
         opacity: 1;
         transform: none;
     }
-    /* ====================================
-       SECTIONS
-    ==================================== */
     .section {
         min-height: auto;
         padding: 100px 0;
@@ -1122,16 +1056,10 @@ html[data-theme="dark"] .contact-button:hover {
     .section-header {
         margin-bottom: 48px;
     }
-    /* ====================================
-       CONTACT
-    ==================================== */
     .contact-content {
         grid-template-columns: 1fr;
     }
 }
-/* ========================================
-   MOBILE
-======================================== */
 @media (max-width: 600px) {
     :root {
         --header-height: 56px;
@@ -1145,9 +1073,6 @@ html[data-theme="dark"] .contact-button:hover {
         justify-content: space-between;
         overflow: visible;
     }
-    /* ====================================
-       NAV
-    ==================================== */
     .logo {
         margin-right: auto;
         font-size: 17px;
@@ -1184,9 +1109,6 @@ html[data-theme="dark"] .contact-button:hover {
     .theme-icon-button .theme-icon {
         font-size: 18px;
     }
-    /* ====================================
-       HERO
-    ==================================== */
     .hero {
         padding: 100px 0 72px;
     }
@@ -1216,9 +1138,6 @@ html[data-theme="dark"] .contact-button:hover {
     .hero-image img {
         display: none;
     }
-    /* ====================================
-       ABOUT
-    ==================================== */
     .about-sticky {
         padding: 80px 0;
     }
@@ -1233,9 +1152,6 @@ html[data-theme="dark"] .contact-button:hover {
         font-size: 15px;
         line-height: 1.6;
     }
-    /* ====================================
-       PROJECTS
-    ==================================== */
     .projects-grid {
         grid-template-columns: 1fr;
         gap: 16px;
@@ -1253,9 +1169,6 @@ html[data-theme="dark"] .contact-button:hover {
         max-width: none;
         -webkit-line-clamp: 5;
     }
-    /* ====================================
-       SKILLS
-    ==================================== */
     .skills-grid {
         grid-template-columns: 1fr;
         gap: 16px;
@@ -1264,9 +1177,6 @@ html[data-theme="dark"] .contact-button:hover {
         padding: 22px;
         border-radius: 18px;
     }
-    /* ====================================
-       CONTACT
-    ==================================== */
     .contact-content {
         gap: 36px;
     }
@@ -1278,7 +1188,6 @@ html[data-theme="dark"] .contact-button:hover {
     }
     .contact-item a {
         font-size: 16px;
-        overflow-wrap: anywhere;
     }
     .contact-form {
         padding: 22px;
@@ -1294,16 +1203,33 @@ html[data-theme="dark"] .contact-button:hover {
     .contact-button {
         width: 100%;
     }
-    /* ====================================
-       FOOTER
-    ==================================== */
     .footer {
         padding: 26px 0;
     }
+    .footer .container {
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        gap: 16px;
+    }
+    .footer p {
+        order: 2;
+        text-align: center;
+    }
+    .footer-socials {
+        order: 1;
+        justify-content: center;
+        gap: 6px;
+    }
+    .footer-socials a {
+        width: 36px;
+        height: 36px;
+    }
+    .footer-socials svg {
+        width: 18px;
+        height: 18px;
+    }
 }
-/* ========================================
-   SMALL MOBILE
-======================================== */
 @media (max-width: 430px) {
     .navbar {
         gap: 7px;
@@ -1327,10 +1253,13 @@ html[data-theme="dark"] .contact-button:hover {
     .theme-icon-button .theme-icon {
         font-size: 17px;
     }
+    .footer {
+        padding: 24px 0;
+    }
+    .footer .container {
+        gap: 14px;
+    }
 }
-/* ========================================
-   REDUCED MOTION
-======================================== */
 @media (prefers-reduced-motion: reduce) {
     html {
         scroll-behavior: auto;
@@ -1364,6 +1293,7 @@ html[data-theme="dark"] .contact-button:hover {
     .skill-group li,
     .contact-item a,
     .footer p,
+    .footer-socials a,
     .hero-image img,
     .button,
     .contact-button,

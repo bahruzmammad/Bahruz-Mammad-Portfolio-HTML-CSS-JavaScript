@@ -10,7 +10,6 @@
         <meta name="author" content="Bahruz Mammadov" />
         <meta name="theme-color" content="#ffffff" id="theme-color" />
         <title>Bahruz Mammadov — Junior Full Stack Developer</title>
-        <!-- Prevent theme flash -->
         <script>
             (function () {
                 try {
@@ -28,9 +27,6 @@
         <link rel="stylesheet" href="asserts/css/styles.css" />
     </head>
     <body>
-        <!-- =====================================================
-             HEADER / NAVBAR
-        ====================================================== -->
         <header class="header-nav">
             <nav class="navbar container" aria-label="Main navigation">
                 <a href="#home" class="logo" aria-label="Bahruz Mammadov home">
@@ -54,9 +50,6 @@
                             <a href="#contact"> Contact </a>
                         </li>
                     </ul>
-                    <!-- =================================================
-                         THEME ICON
-                    ================================================== -->
                     <div class="theme-switcher">
                         <button
                             type="button"
@@ -75,9 +68,6 @@
             </nav>
         </header>
         <main>
-            <!-- =================================================
-                 HOME
-            ================================================== -->
             <section id="home" class="hero" aria-labelledby="hero-title">
                 <div class="container hero-content">
                     <div class="hero-text reveal">
@@ -93,6 +83,13 @@
                         <div class="hero-buttons">
                             <a href="#projects" class="button button-primary">
                                 View Projects
+                            </a>
+                            <a
+                                href="mailto:bahruzmammadly@gmail.com"
+                                class="button button-secondary"
+                                aria-label="Email Bahruz Mammadov"
+                            >
+                                Email Me
                             </a>
                             <a
                                 href="https://github.com/bahruzmammad"
@@ -115,9 +112,6 @@
                     </div>
                 </div>
             </section>
-            <!-- =================================================
-                 ABOUT
-            ================================================== -->
             <section id="about" class="about" aria-labelledby="about-title">
                 <div class="about-sticky">
                     <div class="container about-content">
@@ -189,9 +183,6 @@
                     </div>
                 </div>
             </section>
-            <!-- =================================================
-                 PROJECTS
-            ================================================== -->
             <section
                 id="projects"
                 class="projects section"
@@ -202,7 +193,6 @@
                         <span class="section-label"> Projects </span>
                         <h2 id="projects-title">Selected Projects</h2>
                     </div>
-                    <!-- GitHub repositories loaded by script.js -->
                     <div
                         class="projects-grid"
                         id="github-projects"
@@ -222,9 +212,6 @@
                     </div>
                 </div>
             </section>
-            <!-- =================================================
-                 SKILLS
-            ================================================== -->
             <section
                 id="skills"
                 class="skills section"
@@ -292,9 +279,6 @@
                     </div>
                 </div>
             </section>
-            <!-- =================================================
-                 CONTACT
-            ================================================== -->
             <section
                 id="contact"
                 class="contact section"
@@ -308,9 +292,8 @@
                     <div class="contact-content">
                         <address class="contact-info">
                             <ul>
-                                <!-- EMAIL -->
                                 <li class="contact-item reveal">
-                                    <span> Email </span>
+                                    <span>Email</span>
                                     <a
                                         href="mailto:bahruzmammadly@gmail.com"
                                         aria-label="Send email to Bahruz Mammadov"
@@ -318,9 +301,8 @@
                                         bahruzmammadly@gmail.com
                                     </a>
                                 </li>
-                                <!-- GITHUB -->
                                 <li class="contact-item reveal">
-                                    <span> GitHub </span>
+                                    <span>GitHub</span>
                                     <a
                                         href="https://github.com/bahruzmammad"
                                         target="_blank"
@@ -330,9 +312,8 @@
                                         @bahruzmammad
                                     </a>
                                 </li>
-                                <!-- LINKEDIN -->
                                 <li class="contact-item reveal">
-                                    <span> LinkedIn </span>
+                                    <span>LinkedIn</span>
                                     <a
                                         href="https://www.linkedin.com/in/bahruzmammad"
                                         target="_blank"
@@ -342,9 +323,8 @@
                                         @bahruzmammad
                                     </a>
                                 </li>
-                                <!-- TWITTER -->
                                 <li class="contact-item reveal">
-                                    <span> Twitter </span>
+                                    <span>Twitter</span>
                                     <a
                                         href="https://twitter.com/bahruzmammad"
                                         target="_blank"
@@ -354,9 +334,8 @@
                                         @bahruzmammad
                                     </a>
                                 </li>
-                                <!-- CV -->
                                 <li class="contact-item reveal">
-                                    <span> CV </span>
+                                    <span>CV</span>
                                     <a
                                         href="asserts/cv/Bahruz-Mammadov-CV.pdf"
                                         download="Bahruz-Mammadov-CV.pdf"
@@ -367,12 +346,11 @@
                                 </li>
                             </ul>
                         </address>
-                        <!-- =================================================
-                             CONTACT FORM
-                        ================================================== -->
                         <form
                             class="contact-form reveal"
-                            novalidate
+                            id="contact-form"
+                            action="https://formspree.io/f/xoeqywza"
+                            method="POST"
                             aria-label="Contact form"
                         >
                             <div class="form-group">
@@ -384,7 +362,6 @@
                                     placeholder="Your name"
                                     autocomplete="name"
                                     required
-                                    aria-required="true"
                                 />
                             </div>
                             <div class="form-group">
@@ -396,7 +373,6 @@
                                     placeholder="your@email.com"
                                     autocomplete="email"
                                     required
-                                    aria-required="true"
                                 />
                             </div>
                             <div class="form-group">
@@ -407,7 +383,6 @@
                                     rows="6"
                                     placeholder="Write your message..."
                                     required
-                                    aria-required="true"
                                 ></textarea>
                             </div>
                             <button type="submit" class="contact-button">
@@ -423,17 +398,67 @@
                 </div>
             </section>
         </main>
-        <!-- =====================================================
-             FOOTER
-        ====================================================== -->
         <footer class="footer">
             <div class="container">
                 <p>© 2026 Bahruz. All rights reserved.</p>
+                <div class="footer-socials" aria-label="Social links">
+                    <a
+                        href="https://github.com/bahruzmammad"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="GitHub"
+                        title="GitHub"
+                    >
+                        <svg
+                            viewBox="0 0 24 24"
+                            aria-hidden="true"
+                            focusable="false"
+                        >
+                            <path
+                                fill="currentColor"
+                                d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.85 10.91.57.1.78-.25.78-.55 0-.27-.01-1.17-.01-2.13-3.19.69-3.86-1.35-3.86-1.35-.52-1.33-1.27-1.68-1.27-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.75 1.18 1.75 1.18 1.02 1.75 2.68 1.24 3.34.95.1-.74.4-1.24.73-1.52-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.18-3.09-.12-.29-.51-1.46.11-3.04 0 0 .96-.31 3.15 1.18a10.9 10.9 0 0 1 5.74 0c2.19-1.49 3.15-1.18 3.15-1.18.62 1.58.23 2.75.11 3.04.73.8 1.18 1.83 1.18 3.09 0 4.42-2.69 5.39-5.25 5.67.41.35.77 1.04.77 2.1 0 1.52-.01 2.74-.01 3.11 0 .3.2.66.79.55A11.51 11.51 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"
+                            />
+                        </svg>
+                    </a>
+                    <a
+                        href="https://www.linkedin.com/in/bahruzmammad"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="LinkedIn"
+                        title="LinkedIn"
+                    >
+                        <svg
+                            viewBox="0 0 24 24"
+                            aria-hidden="true"
+                            focusable="false"
+                        >
+                            <path
+                                fill="currentColor"
+                                d="M6.94 8.5H3.2V20h3.74V8.5ZM5.07 3A2.17 2.17 0 1 0 5.06 7.34 2.17 2.17 0 0 0 5.07 3ZM20.8 13.42c0-3.47-1.85-5.09-4.32-5.09-1.99 0-2.88 1.09-3.38 1.85V8.5H9.36V20h3.74v-6.4c0-1.68.32-3.31 2.4-3.31 2.05 0 2.08 1.93 2.08 3.42V20h3.22v-6.58Z"
+                            />
+                        </svg>
+                    </a>
+                    <a
+                        href="https://twitter.com/bahruzmammad"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="X / Twitter"
+                        title="X / Twitter"
+                    >
+                        <svg
+                            viewBox="0 0 24 24"
+                            aria-hidden="true"
+                            focusable="false"
+                        >
+                            <path
+                                fill="currentColor"
+                                d="M18.9 2H22l-6.77 7.74L23.2 22h-6.24l-4.89-6.78L6.14 22H3l7.24-8.28L2.2 2h6.4l4.42 6.19L18.9 2Zm-1.1 17.87h1.72L7.27 4.02H5.43L17.8 19.87Z"
+                            />
+                        </svg>
+                    </a>
+                </div>
             </div>
         </footer>
-        <!-- =====================================================
-             SCRIPTS
-        ====================================================== -->
         <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
         <script src="asserts/js/script.js"></script>
     </body>
