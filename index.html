@@ -10,11 +10,7 @@
         <meta name="author" content="Bahruz Mammadov" />
         <meta name="theme-color" content="#ffffff" id="theme-color" />
         <title>Bahruz Mammadov — Junior Full Stack Developer</title>
-        <link rel="stylesheet" href="asserts/css/styles.css" />
-        <!--
-            Apply the saved theme before the page renders.
-            This helps prevent a flash of the wrong theme.
-        -->
+        <!-- Prevent theme flash -->
         <script>
             (function () {
                 try {
@@ -29,6 +25,7 @@
                 }
             })();
         </script>
+        <link rel="stylesheet" href="asserts/css/styles.css" />
     </head>
     <body>
         <!-- =====================================================
@@ -58,24 +55,19 @@
                         </li>
                     </ul>
                     <!-- =================================================
-                         THEME TOGGLE
+                         THEME ICON
                     ================================================== -->
                     <div class="theme-switcher">
                         <button
                             type="button"
-                            class="theme-toggle"
+                            class="theme-icon-button"
                             id="theme-toggle"
                             aria-label="Switch to dark mode"
                             aria-pressed="false"
+                            title="Switch to dark mode"
                         >
-                            <span class="theme-toggle-track" aria-hidden="true">
-                                <span class="theme-toggle-thumb"></span>
-                                <span class="theme-icon theme-icon-light">
-                                    ☀
-                                </span>
-                                <span class="theme-icon theme-icon-dark">
-                                    ☾
-                                </span>
+                            <span class="theme-icon" aria-hidden="true">
+                                ☾
                             </span>
                         </button>
                     </div>
@@ -210,10 +202,7 @@
                         <span class="section-label"> Projects </span>
                         <h2 id="projects-title">Selected Projects</h2>
                     </div>
-                    <!--
-                        GitHub repositories are loaded dynamically
-                        by script.js.
-                    -->
+                    <!-- GitHub repositories loaded by script.js -->
                     <div
                         class="projects-grid"
                         id="github-projects"
@@ -323,10 +312,10 @@
                                 <li class="contact-item reveal">
                                     <span> Email </span>
                                     <a
-                                        href="mailto:bahruzmammad@gmail.com"
+                                        href="mailto:bahruzmammadly@gmail.com"
                                         aria-label="Send email to Bahruz Mammadov"
                                     >
-                                        bahruzmammad@gmail.com
+                                        bahruzmammadly@gmail.com
                                     </a>
                                 </li>
                                 <!-- GITHUB -->

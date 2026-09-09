@@ -94,10 +94,6 @@ body {
 body.no-scroll {
     overflow: hidden;
 }
-::selection {
-    color: var(--selection-color);
-    background: var(--selection-background);
-}
 a {
     color: inherit;
     text-decoration: none;
@@ -118,11 +114,15 @@ img {
 ul {
     list-style: none;
 }
+::selection {
+    color: var(--selection-color);
+    background: var(--selection-background);
+}
 /* ========================================
    ACCESSIBILITY
 ======================================== */
 :focus-visible {
-    outline: 3px solid currentColor;
+    outline: 3px solid var(--text-primary);
     outline-offset: 4px;
 }
 button:focus-visible,
@@ -157,7 +157,6 @@ textarea:focus-visible {
         border-color 0.45s var(--ease-apple);
 }
 .navbar {
-    width: min(calc(100% - 48px), var(--container-width));
     height: 100%;
     display: flex;
     align-items: center;
@@ -169,10 +168,12 @@ textarea:focus-visible {
 ======================================== */
 .logo {
     flex-shrink: 0;
+    color: var(--text-primary);
     font-size: 20px;
     font-weight: 600;
     letter-spacing: -0.025em;
     transition:
+        color 0.45s var(--ease-apple),
         opacity 0.25s var(--ease-apple),
         transform 0.25s var(--ease-apple);
 }
@@ -184,10 +185,10 @@ textarea:focus-visible {
    NAV RIGHT
 ======================================== */
 .nav-right {
+    min-width: 0;
     display: flex;
     align-items: center;
     gap: 24px;
-    min-width: 0;
 }
 /* ========================================
    NAV LIST
@@ -204,6 +205,7 @@ textarea:focus-visible {
     color: var(--text-secondary);
     font-size: 14px;
     font-weight: 400;
+    white-space: nowrap;
     transition:
         color 0.25s var(--ease-apple),
         opacity 0.25s var(--ease-apple);
@@ -238,103 +240,49 @@ textarea:focus-visible {
     align-items: center;
     justify-content: center;
 }
-/* ========================================
-   THEME TOGGLE
-======================================== */
-.theme-toggle {
-    position: relative;
-    width: 56px;
-    height: 32px;
+.theme-icon-button {
+    width: 36px;
+    height: 36px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     padding: 0;
     color: var(--text-primary);
     background: transparent;
-    border-radius: 999px;
-    transition:
-        transform 0.3s var(--ease-apple),
-        opacity 0.3s var(--ease-apple);
-}
-.theme-toggle:hover {
-    transform: translate3d(0, -1px, 0);
-    opacity: 0.9;
-}
-.theme-toggle-track {
-    position: relative;
-    width: 56px;
-    height: 32px;
-    display: block;
-    background: var(--toggle-background);
-    border: 1px solid var(--border);
-    border-radius: 999px;
-    overflow: hidden;
-    transition:
-        background-color 0.45s var(--ease-apple),
-        border-color 0.45s var(--ease-apple),
-        box-shadow 0.45s var(--ease-apple);
-}
-.theme-toggle:hover .theme-toggle-track {
-    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
-}
-.theme-toggle-thumb {
-    position: absolute;
-    top: 3px;
-    left: 3px;
-    width: 24px;
-    height: 24px;
     border-radius: 50%;
-    background: var(--toggle-thumb);
-    box-shadow:
-        0 1px 3px rgba(0, 0, 0, 0.16),
-        0 2px 8px rgba(0, 0, 0, 0.08);
-    transform: translate3d(0, 0, 0);
+    -webkit-tap-highlight-color: transparent;
     transition:
-        transform 0.45s var(--ease-apple),
-        background-color 0.45s var(--ease-apple),
-        box-shadow 0.45s var(--ease-apple);
+        color 0.45s var(--ease-apple),
+        background-color 0.3s var(--ease-apple),
+        opacity 0.3s var(--ease-apple),
+        transform 0.3s var(--ease-apple);
 }
-.theme-icon {
-    position: absolute;
-    top: 50%;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 14px;
-    height: 14px;
-    color: var(--toggle-icon);
-    font-size: 12px;
+.theme-icon-button:hover {
+    background: var(--background-light);
+    opacity: 0.75;
+    transform: translate3d(0, -2px, 0);
+}
+.theme-icon-button:active {
+    transform: scale(0.9);
+}
+.theme-icon-button .theme-icon {
+    display: inline-block;
+    width: auto;
+    height: auto;
+    color: var(--text-primary);
+    font-size: 20px;
     line-height: 1;
     pointer-events: none;
-    transform: translateY(-50%);
+    transform: rotate(0deg);
     transition:
-        opacity 0.35s var(--ease-apple),
-        transform 0.35s var(--ease-apple),
-        color 0.45s var(--ease-apple);
+        color 0.45s var(--ease-apple),
+        transform 0.35s var(--ease-apple);
 }
-.theme-icon-light {
-    left: 8px;
-    opacity: 1;
-    transform: translate3d(0, -50%, 0) scale(1);
+.theme-icon-button:hover .theme-icon {
+    transform: rotate(12deg);
 }
-.theme-icon-dark {
-    right: 8px;
-    opacity: 0.35;
-    transform: translate3d(0, -50%, 0) scale(0.8);
-}
-/* ========================================
-   DARK TOGGLE STATE
-======================================== */
-html[data-theme="dark"] .theme-toggle-thumb {
-    transform: translate3d(24px, 0, 0);
-}
-html[data-theme="dark"] .theme-icon-light {
-    opacity: 0.35;
-    transform: translate3d(0, -50%, 0) scale(0.8);
-}
-html[data-theme="dark"] .theme-icon-dark {
-    opacity: 1;
-    transform: translate3d(0, -50%, 0) scale(1);
+html[data-theme="dark"] .theme-icon-button:hover .theme-icon {
+    transform: rotate(-12deg);
 }
 /* ========================================
    GLOBAL SECTION
@@ -360,10 +308,12 @@ html[data-theme="dark"] .theme-icon-dark {
 }
 .section-header h2,
 .about-header h2 {
+    color: var(--text-primary);
     font-size: clamp(42px, 5vw, 72px);
     line-height: 0.98;
     letter-spacing: -0.055em;
     font-weight: 600;
+    transition: color 0.45s var(--ease-apple);
 }
 /* ========================================
    HERO
@@ -396,10 +346,12 @@ html[data-theme="dark"] .theme-icon-dark {
 }
 .hero-text h1 {
     margin-bottom: 12px;
+    color: var(--text-primary);
     font-size: clamp(64px, 8vw, 110px);
     line-height: 0.9;
     letter-spacing: -0.065em;
     font-weight: 700;
+    transition: color 0.45s var(--ease-apple);
 }
 .hero-highlight {
     color: var(--text-secondary);
@@ -407,10 +359,12 @@ html[data-theme="dark"] .theme-icon-dark {
 }
 .hero-text h2 {
     margin-bottom: 24px;
+    color: var(--text-primary);
     font-size: clamp(28px, 3vw, 44px);
     line-height: 1.05;
     letter-spacing: -0.04em;
     font-weight: 600;
+    transition: color 0.45s var(--ease-apple);
 }
 .hero-description {
     max-width: 620px;
@@ -487,8 +441,7 @@ html[data-theme="dark"] .button-primary:hover {
     transform: translate3d(0, 0, 0) scale(1);
     transition:
         transform 0.7s var(--ease-apple),
-        box-shadow 0.7s var(--ease-apple),
-        filter 0.45s var(--ease-apple);
+        box-shadow 0.7s var(--ease-apple);
 }
 .hero-image:hover img {
     transform: translate3d(0, -6px, 0) scale(1.015);
@@ -523,7 +476,14 @@ html[data-theme="dark"] .hero-image img {
     background: linear-gradient(
         to bottom,
         transparent,
-        color-mix(in srgb, var(--background) 4%, transparent)
+        rgba(128, 128, 128, 0.03)
+    );
+}
+html[data-theme="dark"] .about::after {
+    background: linear-gradient(
+        to bottom,
+        transparent,
+        rgba(255, 255, 255, 0.02)
     );
 }
 .about-content {
@@ -769,8 +729,8 @@ html[data-theme="dark"] .project-card::before {
     line-height: 1.1;
     letter-spacing: -0.025em;
     transition:
-        transform 0.4s var(--ease-apple),
-        color 0.45s var(--ease-apple);
+        color 0.45s var(--ease-apple),
+        transform 0.4s var(--ease-apple);
 }
 .skill-group:hover h3 {
     transform: translate3d(0, -2px, 0);
@@ -945,8 +905,7 @@ html[data-theme="dark"] .project-card::before {
 .form-group input:focus,
 .form-group textarea:focus {
     border-color: var(--text-primary);
-    box-shadow: 0 0 0 4px
-        color-mix(in srgb, var(--text-primary) 8%, transparent);
+    box-shadow: 0 0 0 4px rgba(128, 128, 128, 0.12);
 }
 /* ========================================
    CONTACT BUTTON
@@ -1025,7 +984,7 @@ html[data-theme="dark"] .contact-button:hover {
     transform: translate3d(0, 0, 0);
 }
 /*
- * Dynamic GitHub content.
+ * GitHub loading state.
  */
 .github-loading.reveal,
 .github-loading.reveal.visible {
@@ -1034,7 +993,7 @@ html[data-theme="dark"] .contact-button:hover {
     transition-delay: 0s !important;
 }
 /*
- * About paragraphs have their own
+ * About paragraphs use their own
  * animation system.
  */
 .about-body p.reveal {
@@ -1083,11 +1042,14 @@ html[data-theme="dark"] .contact-button:hover {
         gap: 18px;
     }
     .nav-right {
-        gap: 16px;
         min-width: 0;
+        flex: 1;
+        gap: 16px;
         overflow: hidden;
     }
     .nav-list {
+        min-width: 0;
+        flex: 1;
         gap: 18px;
         overflow-x: auto;
         scrollbar-width: none;
@@ -1096,11 +1058,8 @@ html[data-theme="dark"] .contact-button:hover {
         display: none;
     }
     .nav-list a {
+        flex-shrink: 0;
         font-size: 13px;
-        white-space: nowrap;
-    }
-    .theme-switcher {
-        padding-left: 2px;
     }
     /* ====================================
        HERO
@@ -1182,7 +1141,7 @@ html[data-theme="dark"] .contact-button:hover {
     }
     .navbar {
         width: calc(100% - 32px);
-        gap: 12px;
+        gap: 10px;
         justify-content: space-between;
         overflow: visible;
     }
@@ -1196,7 +1155,7 @@ html[data-theme="dark"] .contact-button:hover {
     .nav-right {
         flex: 1;
         justify-content: flex-end;
-        gap: 10px;
+        gap: 8px;
         min-width: 0;
     }
     .nav-list {
@@ -1218,30 +1177,12 @@ html[data-theme="dark"] .contact-button:hover {
     .theme-switcher {
         flex-shrink: 0;
     }
-    .theme-toggle,
-    .theme-toggle-track {
-        width: 50px;
-        height: 30px;
+    .theme-icon-button {
+        width: 34px;
+        height: 34px;
     }
-    .theme-toggle-thumb {
-        width: 22px;
-        height: 22px;
-        top: 3px;
-        left: 3px;
-    }
-    html[data-theme="dark"] .theme-toggle-thumb {
-        transform: translate3d(20px, 0, 0);
-    }
-    .theme-icon {
-        width: 13px;
-        height: 13px;
-        font-size: 11px;
-    }
-    .theme-icon-light {
-        left: 7px;
-    }
-    .theme-icon-dark {
-        right: 7px;
+    .theme-icon-button .theme-icon {
+        font-size: 18px;
     }
     /* ====================================
        HERO
@@ -1365,42 +1306,26 @@ html[data-theme="dark"] .contact-button:hover {
 ======================================== */
 @media (max-width: 430px) {
     .navbar {
-        gap: 8px;
+        gap: 7px;
     }
     .logo {
         font-size: 15px;
     }
     .nav-right {
-        gap: 8px;
+        gap: 6px;
     }
     .nav-list {
-        gap: 12px;
+        gap: 11px;
     }
     .nav-list a {
         font-size: 11px;
     }
-    .theme-toggle,
-    .theme-toggle-track {
-        width: 46px;
-        height: 28px;
+    .theme-icon-button {
+        width: 32px;
+        height: 32px;
     }
-    .theme-toggle-thumb {
-        width: 20px;
-        height: 20px;
-        top: 3px;
-        left: 3px;
-    }
-    html[data-theme="dark"] .theme-toggle-thumb {
-        transform: translate3d(18px, 0, 0);
-    }
-    .theme-icon {
-        font-size: 10px;
-    }
-    .theme-icon-light {
-        left: 6px;
-    }
-    .theme-icon-dark {
-        right: 6px;
+    .theme-icon-button .theme-icon {
+        font-size: 17px;
     }
 }
 /* ========================================
@@ -1442,8 +1367,7 @@ html[data-theme="dark"] .contact-button:hover {
     .hero-image img,
     .button,
     .contact-button,
-    .theme-toggle,
-    .theme-toggle-thumb,
+    .theme-icon-button,
     .theme-icon {
         transform: none !important;
         transition: none !important;

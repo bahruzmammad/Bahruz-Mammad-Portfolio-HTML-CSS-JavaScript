@@ -106,6 +106,12 @@ $(function () {
       return;
     }
     const isDark = theme === "dark";
+    const $icon = $themeToggle.find(".theme-icon");
+    /*
+     * Light mode  -> moon icon
+     * Dark mode   -> sun icon
+     */
+    $icon.text(isDark ? "☀" : "☾");
     $themeToggle.attr("aria-pressed", String(isDark));
     $themeToggle.attr(
       "aria-label",
@@ -217,12 +223,15 @@ $(function () {
       });
   }
   /* ========================================
-       RENDER PROJECTS
+       RENDER GITHUB PROJECTS
     ======================================== */
   function renderGitHubProjects(repos) {
     if (!$projectsGrid.length) {
       return;
     }
+    /*
+     * No repositories.
+     */
     if (!repos.length) {
       $projectsGrid.html(`
                 <article class="project-card reveal visible">
@@ -255,6 +264,9 @@ $(function () {
       $projectsGrid.attr("aria-busy", "false");
       return;
     }
+    /*
+     * Build project cards.
+     */
     const html = repos
       .map(function (repo, index) {
         const number = String(index + 1).padStart(2, "0");
@@ -265,45 +277,47 @@ $(function () {
         const stars = Number(repo.stargazers_count) || 0;
         const githubUrl = escapeHtml(repo.html_url);
         return `
-                            <article
-                                class="project-card reveal"
-                            >
-                                <div class="project-content">
-                                    <span class="project-number">
-                                        ${number}
+                        <article
+                            class="project-card reveal"
+                        >
+                            <div class="project-content">
+                                <span class="project-number">
+                                    ${number}
+                                </span>
+                                <h3>
+                                    ${name}
+                                </h3>
+                                <p>
+                                    ${description}
+                                </p>
+                                <div class="project-tech">
+                                    <span>
+                                        ${language}
                                     </span>
-                                    <h3>
-                                        ${name}
-                                    </h3>
-                                    <p>
-                                        ${description}
-                                    </p>
-                                    <div class="project-tech">
-                                        <span>
-                                            ${language}
-                                        </span>
-                                        ${
-                                          stars > 0
-                                            ? `<span>★ ${stars}</span>`
-                                            : ""
-                                        }
-                                    </div>
-                                    <a
-                                        class="project-link"
-                                        href="${githubUrl}"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        aria-label="View ${name} on GitHub"
-                                    >
-                                        View Project →
-                                    </a>
+                                    ${
+                                      stars > 0 ? `<span>★ ${stars}</span>` : ""
+                                    }
                                 </div>
-                            </article>
-                        `;
+                                <a
+                                    class="project-link"
+                                    href="${githubUrl}"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    aria-label="View ${name} on GitHub"
+                                >
+                                    View Project →
+                                </a>
+                            </div>
+                        </article>
+                    `;
       })
       .join("");
     $projectsGrid.html(html);
     $projectsGrid.attr("aria-busy", "false");
+    /*
+     * Allow the browser to paint
+     * the new cards before observing.
+     */
     window.requestAnimationFrame(function () {
       setupRevealObserver();
       setupProjectHover();
@@ -353,6 +367,10 @@ $(function () {
     if (!$about.length) {
       return;
     }
+    /*
+     * Sticky About is disabled
+     * on mobile devices.
+     */
     if (isMobile()) {
       $about.css("height", "auto");
       return;
@@ -363,6 +381,10 @@ $(function () {
     }
     const viewportHeight = $window.height();
     const step = getAboutStep();
+    /*
+     * Add enough scroll space
+     * for each paragraph.
+     */
     const extraHeight = Math.max(0, $paragraphs.length - 1) * step;
     const sectionHeight = viewportHeight + extraHeight + getHeaderHeight();
     $about.css("height", `${sectionHeight}px`);
@@ -374,6 +396,10 @@ $(function () {
     if (!$about.length || !$paragraphs.length) {
       return;
     }
+    /*
+     * Mobile:
+     * show the first paragraph.
+     */
     if (isMobile()) {
       $paragraphs.removeClass("active").first().addClass("active");
       return;
@@ -384,6 +410,9 @@ $(function () {
     }
     const scrollTop = $window.scrollTop();
     const relativeScroll = scrollTop - aboutOffset.top;
+    /*
+     * Before About begins.
+     */
     if (relativeScroll <= 0) {
       $paragraphs.removeClass("active").first().addClass("active");
       return;
@@ -422,6 +451,9 @@ $(function () {
         currentId = $section.attr("id");
       }
     });
+    /*
+     * Home fallback.
+     */
     if (!currentId) {
       const $home = $("#home");
       if ($home.length) {
@@ -431,6 +463,9 @@ $(function () {
         }
       }
     }
+    /*
+     * Final fallback.
+     */
     if (!currentId && $sections.length) {
       currentId = $sections.last().attr("id");
     }
@@ -477,6 +512,10 @@ $(function () {
     if (!$elements.length) {
       return;
     }
+    /*
+     * Fallback when IntersectionObserver
+     * is not supported.
+     */
     if (!("IntersectionObserver" in window)) {
       $elements.addClass("visible");
       return;
@@ -513,6 +552,9 @@ $(function () {
     if (!$projectCards.length) {
       return;
     }
+    /*
+     * Remove old handlers first.
+     */
     $projectCards.off(".projectHover");
     $projectCards.on("mouseenter.projectHover", function () {
       const $card = $(this);
@@ -531,6 +573,9 @@ $(function () {
   $contactForm.on("submit", function (event) {
     event.preventDefault();
     const form = this;
+    /*
+     * Browser-native validation.
+     */
     if (!form.checkValidity()) {
       form.reportValidity();
       return;
@@ -538,6 +583,9 @@ $(function () {
     const originalText = $contactButton.text();
     $contactButton.prop("disabled", true).text("Sending...");
     $formStatus.text("");
+    /*
+     * Simulated request.
+     */
     window.setTimeout(function () {
       $contactButton.prop("disabled", false).text("Message Sent ✓");
       $formStatus.text("Your message has been prepared successfully.");
