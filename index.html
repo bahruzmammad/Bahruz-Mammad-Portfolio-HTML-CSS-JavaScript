@@ -7,63 +7,107 @@
             name="description"
             content="Bahruz Mammadov — Junior Full Stack Developer and Software Engineering Student."
         />
-        <title>Bahruz — Junior Full Stack Developer</title>
+        <meta name="author" content="Bahruz Mammadov" />
+        <meta name="theme-color" content="#ffffff" id="theme-color" />
+        <title>Bahruz Mammadov — Junior Full Stack Developer</title>
         <link rel="stylesheet" href="asserts/css/styles.css" />
+        <!--
+            Apply the saved theme before the page renders.
+            This helps prevent a flash of the wrong theme.
+        -->
+        <script>
+            (function () {
+                try {
+                    const savedTheme = localStorage.getItem("theme");
+                    const systemDark = window.matchMedia(
+                        "(prefers-color-scheme: dark)",
+                    ).matches;
+                    const theme = savedTheme || (systemDark ? "dark" : "light");
+                    document.documentElement.dataset.theme = theme;
+                } catch (error) {
+                    document.documentElement.dataset.theme = "light";
+                }
+            })();
+        </script>
     </head>
     <body>
         <!-- =====================================================
              HEADER / NAVBAR
         ====================================================== -->
         <header class="header-nav">
-            <nav class="navbar container">
-                <a href="#home" class="logo" aria-label="Bahruz Home">
-                    Bahruz
+            <nav class="navbar container" aria-label="Main navigation">
+                <a href="#home" class="logo" aria-label="Bahruz Mammadov home">
+                    Bahruz Mammadov
                 </a>
-                <ul class="nav-list">
-                    <li>
-                        <a href="#home" class="active"> Home </a>
-                    </li>
-                    <li>
-                        <a href="#about"> About </a>
-                    </li>
-                    <li>
-                        <a href="#projects"> Projects </a>
-                    </li>
-                    <li>
-                        <a href="#skills"> Skills </a>
-                    </li>
-                    <li>
-                        <a href="#contact"> Contact </a>
-                    </li>
-                </ul>
+                <div class="nav-right">
+                    <ul class="nav-list">
+                        <li>
+                            <a href="#home" class="active"> Home </a>
+                        </li>
+                        <li>
+                            <a href="#about"> About </a>
+                        </li>
+                        <li>
+                            <a href="#projects"> Projects </a>
+                        </li>
+                        <li>
+                            <a href="#skills"> Skills </a>
+                        </li>
+                        <li>
+                            <a href="#contact"> Contact </a>
+                        </li>
+                    </ul>
+                    <!-- =================================================
+                         THEME TOGGLE
+                    ================================================== -->
+                    <div class="theme-switcher">
+                        <button
+                            type="button"
+                            class="theme-toggle"
+                            id="theme-toggle"
+                            aria-label="Switch to dark mode"
+                            aria-pressed="false"
+                        >
+                            <span class="theme-toggle-track" aria-hidden="true">
+                                <span class="theme-toggle-thumb"></span>
+                                <span class="theme-icon theme-icon-light">
+                                    ☀
+                                </span>
+                                <span class="theme-icon theme-icon-dark">
+                                    ☾
+                                </span>
+                            </span>
+                        </button>
+                    </div>
+                </div>
             </nav>
         </header>
         <main>
             <!-- =================================================
                  HOME
             ================================================== -->
-            <section id="home" class="hero">
+            <section id="home" class="hero" aria-labelledby="hero-title">
                 <div class="container hero-content">
                     <div class="hero-text reveal">
                         <p class="hero-greeting">Hi, I'm</p>
-                        <h1>
+                        <h1 id="hero-title">
                             Bahruz
                             <span class="hero-highlight"> Mammadov </span>
                         </h1>
                         <h2>Junior Full Stack Developer</h2>
                         <p class="hero-description">
-                            I build modern and responsive web applications using
-                            JavaScript, React and Node.js.
+                            I build modern and responsive web applications.
                         </p>
                         <div class="hero-buttons">
                             <a href="#projects" class="button button-primary">
                                 View Projects
                             </a>
                             <a
-                                href="https://github.com/"
+                                href="https://github.com/bahruzmammad"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 class="button button-secondary"
+                                aria-label="Visit Bahruz Mammadov GitHub profile"
                             >
                                 GitHub
                             </a>
@@ -82,14 +126,19 @@
             <!-- =================================================
                  ABOUT
             ================================================== -->
-            <section id="about" class="about">
+            <section id="about" class="about" aria-labelledby="about-title">
                 <div class="about-sticky">
                     <div class="container about-content">
                         <div class="about-header reveal">
                             <span class="section-label"> About Me </span>
-                            <h2>Software Engineering Student</h2>
+                            <h2 id="about-title">
+                                Software Engineering Student
+                            </h2>
                         </div>
-                        <div class="about-body">
+                        <div
+                            class="about-body"
+                            aria-label="About Bahruz Mammadov"
+                        >
                             <p class="active">
                                 Hi, I'm Bahruz Mammadov, a software engineering
                                 student with a strong interest in backend
@@ -151,78 +200,34 @@
             <!-- =================================================
                  PROJECTS
             ================================================== -->
-            <section id="projects" class="projects section">
+            <section
+                id="projects"
+                class="projects section"
+                aria-labelledby="projects-title"
+            >
                 <div class="container">
                     <div class="section-header reveal">
                         <span class="section-label"> Projects </span>
-                        <h2>Selected Projects</h2>
+                        <h2 id="projects-title">Selected Projects</h2>
                     </div>
-                    <div class="projects-grid">
-                        <article class="project-card reveal">
+                    <!--
+                        GitHub repositories are loaded dynamically
+                        by script.js.
+                    -->
+                    <div
+                        class="projects-grid"
+                        id="github-projects"
+                        aria-live="polite"
+                        aria-busy="true"
+                    >
+                        <article class="project-card github-loading">
                             <div class="project-content">
-                                <span class="project-number"> 01 </span>
-                                <h3>Portfolio Website</h3>
-                                <p>
-                                    A modern and responsive personal portfolio
-                                    website built with clean frontend
-                                    technologies.
-                                </p>
+                                <span class="project-number"> — </span>
+                                <h3>Loading projects...</h3>
+                                <p>Fetching repositories from GitHub.</p>
                                 <div class="project-tech">
-                                    <span>HTML</span>
-                                    <span>CSS</span>
-                                    <span>JavaScript</span>
+                                    <span> GitHub API </span>
                                 </div>
-                                <a
-                                    href="#"
-                                    class="project-link"
-                                    aria-label="View Portfolio Website project"
-                                >
-                                    View Project →
-                                </a>
-                            </div>
-                        </article>
-                        <article class="project-card reveal">
-                            <div class="project-content">
-                                <span class="project-number"> 02 </span>
-                                <h3>Web Application</h3>
-                                <p>
-                                    A full-stack web application built with
-                                    React, Node.js and MongoDB.
-                                </p>
-                                <div class="project-tech">
-                                    <span>React</span>
-                                    <span>Node.js</span>
-                                    <span>MongoDB</span>
-                                </div>
-                                <a
-                                    href="#"
-                                    class="project-link"
-                                    aria-label="View Web Application project"
-                                >
-                                    View Project →
-                                </a>
-                            </div>
-                        </article>
-                        <article class="project-card reveal">
-                            <div class="project-content">
-                                <span class="project-number"> 03 </span>
-                                <h3>Java Backend API</h3>
-                                <p>
-                                    A backend application focused on REST APIs,
-                                    database integration and clean architecture.
-                                </p>
-                                <div class="project-tech">
-                                    <span>Java</span>
-                                    <span>Spring Boot</span>
-                                    <span>MySQL</span>
-                                </div>
-                                <a
-                                    href="#"
-                                    class="project-link"
-                                    aria-label="View Java Backend API project"
-                                >
-                                    View Project →
-                                </a>
                             </div>
                         </article>
                     </div>
@@ -231,11 +236,15 @@
             <!-- =================================================
                  SKILLS
             ================================================== -->
-            <section id="skills" class="skills section">
+            <section
+                id="skills"
+                class="skills section"
+                aria-labelledby="skills-title"
+            >
                 <div class="container">
                     <div class="section-header reveal">
                         <span class="section-label"> Skills </span>
-                        <h2>Technologies I Work With</h2>
+                        <h2 id="skills-title">Technologies I Work With</h2>
                     </div>
                     <div class="skills-grid">
                         <div class="skill-group reveal">
@@ -297,54 +306,86 @@
             <!-- =================================================
                  CONTACT
             ================================================== -->
-            <section id="contact" class="contact section">
+            <section
+                id="contact"
+                class="contact section"
+                aria-labelledby="contact-title"
+            >
                 <div class="container">
                     <div class="section-header reveal">
                         <span class="section-label"> Contact </span>
-                        <h2>Let's Work Together</h2>
+                        <h2 id="contact-title">Let's Work Together</h2>
                     </div>
                     <div class="contact-content">
                         <address class="contact-info">
                             <ul>
+                                <!-- EMAIL -->
                                 <li class="contact-item reveal">
-                                    <span>Email</span>
-                                    <a href="mailto:bahruzmammad@gmail.com">
+                                    <span> Email </span>
+                                    <a
+                                        href="mailto:bahruzmammad@gmail.com"
+                                        aria-label="Send email to Bahruz Mammadov"
+                                    >
                                         bahruzmammad@gmail.com
                                     </a>
                                 </li>
+                                <!-- GITHUB -->
                                 <li class="contact-item reveal">
-                                    <span>GitHub</span>
+                                    <span> GitHub </span>
                                     <a
                                         href="https://github.com/bahruzmammad"
                                         target="_blank"
                                         rel="noopener noreferrer"
+                                        aria-label="Visit Bahruz Mammadov GitHub profile"
                                     >
                                         @bahruzmammad
                                     </a>
                                 </li>
+                                <!-- LINKEDIN -->
                                 <li class="contact-item reveal">
-                                    <span>LinkedIn</span>
+                                    <span> LinkedIn </span>
                                     <a
                                         href="https://www.linkedin.com/in/bahruzmammad"
                                         target="_blank"
                                         rel="noopener noreferrer"
+                                        aria-label="Visit Bahruz Mammadov LinkedIn profile"
                                     >
                                         @bahruzmammad
                                     </a>
                                 </li>
+                                <!-- TWITTER -->
                                 <li class="contact-item reveal">
-                                    <span>X</span>
+                                    <span> Twitter </span>
                                     <a
-                                        href="https://x.com/bahruzmammad"
+                                        href="https://twitter.com/bahruzmammad"
                                         target="_blank"
                                         rel="noopener noreferrer"
+                                        aria-label="Visit Bahruz Mammadov Twitter profile"
                                     >
                                         @bahruzmammad
+                                    </a>
+                                </li>
+                                <!-- CV -->
+                                <li class="contact-item reveal">
+                                    <span> CV </span>
+                                    <a
+                                        href="asserts/cv/Bahruz-Mammadov-CV.pdf"
+                                        download="Bahruz-Mammadov-CV.pdf"
+                                        aria-label="Download Bahruz Mammadov CV as PDF"
+                                    >
+                                        Download CV
                                     </a>
                                 </li>
                             </ul>
                         </address>
-                        <form class="contact-form reveal" novalidate>
+                        <!-- =================================================
+                             CONTACT FORM
+                        ================================================== -->
+                        <form
+                            class="contact-form reveal"
+                            novalidate
+                            aria-label="Contact form"
+                        >
                             <div class="form-group">
                                 <label for="name"> Name </label>
                                 <input
@@ -354,6 +395,7 @@
                                     placeholder="Your name"
                                     autocomplete="name"
                                     required
+                                    aria-required="true"
                                 />
                             </div>
                             <div class="form-group">
@@ -365,6 +407,7 @@
                                     placeholder="your@email.com"
                                     autocomplete="email"
                                     required
+                                    aria-required="true"
                                 />
                             </div>
                             <div class="form-group">
@@ -375,12 +418,17 @@
                                     rows="6"
                                     placeholder="Write your message..."
                                     required
+                                    aria-required="true"
                                 ></textarea>
                             </div>
                             <button type="submit" class="contact-button">
                                 Send Message →
                             </button>
-                            <p class="form-status" aria-live="polite"></p>
+                            <p
+                                class="form-status"
+                                aria-live="polite"
+                                aria-atomic="true"
+                            ></p>
                         </form>
                     </div>
                 </div>
@@ -394,6 +442,9 @@
                 <p>© 2026 Bahruz. All rights reserved.</p>
             </div>
         </footer>
+        <!-- =====================================================
+             SCRIPTS
+        ====================================================== -->
         <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
         <script src="asserts/js/script.js"></script>
     </body>
