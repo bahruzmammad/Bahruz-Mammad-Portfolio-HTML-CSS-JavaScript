@@ -5,50 +5,128 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta
             name="description"
-            content="Bahruz Mammadov — Junior Full Stack Developer and Software Engineering Student."
+            content="Bahruz Mammadov is a junior full-stack developer and software engineering student building modern web applications with Java, Spring Boot, React, Node.js, and MySQL. Open to junior developer roles."
         />
         <meta name="author" content="Bahruz Mammadov" />
         <meta name="theme-color" content="#ffffff" id="theme-color" />
+        <meta name="robots" content="index, follow" />
+        <link rel="canonical" href="https://bahruzmammad.github.io/" />
+
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://bahruzmammad.github.io/" />
+        <meta
+            property="og:title"
+            content="Bahruz Mammadov — Junior Full Stack Developer"
+        />
+        <meta
+            property="og:description"
+            content="Portfolio of Bahruz Mammadov — junior full-stack developer specialising in Java, React, and Node.js web applications."
+        />
+        <meta
+            property="og:image"
+            content="https://bahruzmammad.github.io/assets/img/myimage.jpg"
+        />
+        <meta
+            property="og:image:alt"
+            content="Bahruz Mammadov — Junior Full Stack Developer"
+        />
+        <meta property="og:locale" content="en_US" />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:site" content="@bahruzmammad" />
+        <meta name="twitter:creator" content="@bahruzmammad" />
+        <meta name="twitter:url" content="https://bahruzmammad.github.io/" />
+        <meta
+            name="twitter:title"
+            content="Bahruz Mammadov — Junior Full Stack Developer"
+        />
+        <meta
+            name="twitter:description"
+            content="Portfolio of Bahruz Mammadov — junior full-stack developer specialising in Java, React, and Node.js web applications."
+        />
+        <meta
+            name="twitter:image"
+            content="https://bahruzmammad.github.io/assets/img/myimage.jpg"
+        />
+
         <title>Bahruz Mammadov — Junior Full Stack Developer</title>
+
+        <link
+            rel="icon"
+            type="image/png"
+            href="assets/img/favicon.png"
+            sizes="32x32"
+        />
+        <link rel="apple-touch-icon" href="assets/img/myimage.jpg" />
+
+        <script type="application/ld+json">
+            {
+                "@context": "https://schema.org",
+                "@graph": [
+                    {
+                        "@type": "Person",
+                        "@id": "https://bahruzmammad.github.io/#person",
+                        "name": "Bahruz Mammadov",
+                        "url": "https://bahruzmammad.github.io/",
+                        "jobTitle": "Junior Full Stack Developer",
+                        "description": "Software engineering student and junior full-stack developer building web applications with Java, Spring Boot, React, Node.js, and MySQL.",
+                        "sameAs": [
+                            "https://github.com/bahruzmammad",
+                            "https://www.linkedin.com/in/bahruzmammad",
+                            "https://twitter.com/bahruzmammad"
+                        ]
+                    },
+                    {
+                        "@type": "WebSite",
+                        "@id": "https://bahruzmammad.github.io/#website",
+                        "url": "https://bahruzmammad.github.io/",
+                        "name": "Bahruz Mammadov — Portfolio",
+                        "description": "Personal portfolio of Bahruz Mammadov, junior full-stack developer.",
+                        "author": {
+                            "@id": "https://bahruzmammad.github.io/#person"
+                        }
+                    }
+                ]
+            }
+        </script>
+
         <script>
             (function () {
                 try {
-                    const savedTheme = localStorage.getItem("theme");
-                    const systemDark = window.matchMedia(
+                    var t = localStorage.getItem("theme");
+                    var d = window.matchMedia(
                         "(prefers-color-scheme: dark)",
                     ).matches;
-                    const theme = savedTheme || (systemDark ? "dark" : "light");
-                    document.documentElement.dataset.theme = theme;
-                } catch (error) {
+                    document.documentElement.dataset.theme =
+                        t || (d ? "dark" : "light");
+                } catch (e) {
                     document.documentElement.dataset.theme = "light";
                 }
             })();
         </script>
-        <link rel="stylesheet" href="asserts/css/styles.css" />
+
+        <link rel="stylesheet" href="assets/css/styles.css" />
     </head>
     <body>
-        <header class="header-nav">
+        <a href="#main" class="skip-to-content">Skip to main content</a>
+
+        <header class="header-nav" role="banner">
             <nav class="navbar container" aria-label="Main navigation">
-                <a href="#home" class="logo" aria-label="Bahruz Mammadov home">
-                    Bahruz Mammadov
-                </a>
+                <a
+                    href="#home"
+                    class="logo"
+                    aria-label="Bahruz Mammadov — back to top"
+                    >Bahruz Mammadov</a
+                >
                 <div class="nav-right">
-                    <ul class="nav-list">
-                        <li>
-                            <a href="#home" class="active"> Home </a>
-                        </li>
-                        <li>
-                            <a href="#about"> About </a>
-                        </li>
-                        <li>
-                            <a href="#projects"> Projects </a>
-                        </li>
-                        <li>
-                            <a href="#skills"> Skills </a>
-                        </li>
-                        <li>
-                            <a href="#contact"> Contact </a>
-                        </li>
+                    <ul class="nav-list" role="list">
+                        <li><a href="#home" class="active">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#projects">Projects</a></li>
+                        <li><a href="#education">Education</a></li>
+                        <li><a href="#skills">Skills</a></li>
+                        <li><a href="#certificates">Certificates</a></li>
+                        <li><a href="#contact">Contact</a></li>
                     </ul>
                     <div class="theme-switcher">
                         <button
@@ -59,64 +137,66 @@
                             aria-pressed="false"
                             title="Switch to dark mode"
                         >
-                            <span class="theme-icon" aria-hidden="true">
-                                ☾
-                            </span>
+                            <span class="theme-icon" aria-hidden="true"
+                                >&#9790;</span
+                            >
                         </button>
                     </div>
                 </div>
             </nav>
         </header>
-        <main>
+
+        <main id="main">
             <section id="home" class="hero" aria-labelledby="hero-title">
                 <div class="container hero-content">
                     <div class="hero-text reveal">
-                        <p class="hero-greeting">Hi, I'm</p>
+                        <p class="hero-greeting">Hi, I&#8217;m</p>
                         <h1 id="hero-title">
                             Bahruz
-                            <span class="hero-highlight"> Mammadov </span>
+                            <span class="hero-highlight">Mammadov</span>
                         </h1>
                         <h2>Junior Full Stack Developer</h2>
                         <p class="hero-description">
                             I build modern and responsive web applications.
                         </p>
                         <div class="hero-buttons">
-                            <a href="#projects" class="button button-primary">
-                                View Projects
-                            </a>
+                            <a href="#projects" class="button button-primary"
+                                >View Projects</a
+                            >
                             <a
                                 href="mailto:bahruzmammadly@gmail.com"
                                 class="button button-secondary"
-                                aria-label="Email Bahruz Mammadov"
+                                aria-label="Send email to Bahruz Mammadov"
+                                >Email Me</a
                             >
-                                Email Me
-                            </a>
                             <a
                                 href="https://github.com/bahruzmammad"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 class="button button-secondary"
-                                aria-label="Visit Bahruz Mammadov GitHub profile"
+                                aria-label="View Bahruz Mammadov on GitHub (opens in new tab)"
+                                >GitHub</a
                             >
-                                GitHub
-                            </a>
                         </div>
                     </div>
-                    <div class="hero-image reveal">
+                    <div class="hero-image reveal" aria-hidden="true">
                         <img
-                            src="asserts/img/myimage.jpg"
+                            src="assets/img/myimage.jpg"
                             alt="Portrait of Bahruz Mammadov"
                             width="380"
                             height="380"
+                            loading="eager"
+                            fetchpriority="high"
                         />
                     </div>
                 </div>
             </section>
+
             <section id="about" class="about" aria-labelledby="about-title">
                 <div class="about-sticky">
                     <div class="container about-content">
                         <div class="about-header reveal">
-                            <span class="section-label"> About Me </span>
+                            <span class="section-label">About Me</span>
                             <h2 id="about-title">
                                 Software Engineering Student
                             </h2>
@@ -126,10 +206,11 @@
                             aria-label="About Bahruz Mammadov"
                         >
                             <p class="active">
-                                Hi, I'm Bahruz Mammadov, a software engineering
-                                student with a strong interest in backend
-                                development, software engineering fundamentals,
-                                and data structures and algorithms.
+                                Hi, I&#8217;m Bahruz Mammadov, a software
+                                engineering student with a strong interest in
+                                backend development, software engineering
+                                fundamentals, and data structures and
+                                algorithms.
                             </p>
                             <p>
                                 My software development journey started at Div
@@ -144,13 +225,13 @@
                                 my problem-solving and programming skills.
                             </p>
                             <p>
-                                I'm currently studying Computer Software Systems
-                                at Ismayilli State College of Technology and
-                                Humanities.
+                                I&#8217;m currently studying Computer Software
+                                Systems at Ismayilli State College of Technology
+                                and Humanities.
                             </p>
                             <p>
                                 My current focus is Java backend development and
-                                software engineering. I'm learning and
+                                software engineering. I&#8217;m learning and
                                 practicing Java, object-oriented programming,
                                 data structures and algorithms, databases, REST
                                 APIs, Git, software architecture, and backend
@@ -183,6 +264,7 @@
                     </div>
                 </div>
             </section>
+
             <section
                 id="projects"
                 class="projects section"
@@ -190,7 +272,7 @@
             >
                 <div class="container">
                     <div class="section-header reveal">
-                        <span class="section-label"> Projects </span>
+                        <span class="section-label">Projects</span>
                         <h2 id="projects-title">Selected Projects</h2>
                     </div>
                     <div
@@ -199,19 +281,41 @@
                         aria-live="polite"
                         aria-busy="true"
                     >
-                        <article class="project-card github-loading">
+                        <article
+                            class="project-card github-loading"
+                            aria-label="Loading projects"
+                        >
                             <div class="project-content">
-                                <span class="project-number"> — </span>
-                                <h3>Loading projects...</h3>
+                                <span class="project-number">&#8212;</span>
+                                <h3>Loading&#8230;</h3>
                                 <p>Fetching repositories from GitHub.</p>
                                 <div class="project-tech">
-                                    <span> GitHub API </span>
+                                    <span>GitHub API</span>
                                 </div>
                             </div>
                         </article>
                     </div>
                 </div>
             </section>
+
+            <section
+                id="education"
+                class="education section"
+                aria-labelledby="education-title"
+            >
+                <div class="container">
+                    <div class="section-header reveal">
+                        <span class="section-label">Education</span>
+                        <h2 id="education-title">Academic Background</h2>
+                    </div>
+                    <div
+                        class="education-grid"
+                        id="education-grid"
+                        aria-live="polite"
+                    ></div>
+                </div>
+            </section>
+
             <section
                 id="skills"
                 class="skills section"
@@ -219,7 +323,7 @@
             >
                 <div class="container">
                     <div class="section-header reveal">
-                        <span class="section-label"> Skills </span>
+                        <span class="section-label">Skills</span>
                         <h2 id="skills-title">Technologies I Work With</h2>
                     </div>
                     <div class="skills-grid">
@@ -279,6 +383,94 @@
                     </div>
                 </div>
             </section>
+
+            <section
+                id="certificates"
+                class="certificates section"
+                aria-labelledby="certificates-title"
+            >
+                <div class="container">
+                    <div class="section-header reveal">
+                        <span class="section-label">Certificates</span>
+                        <h2 id="certificates-title">Certifications</h2>
+                    </div>
+                    <div
+                        class="cert-showcase reveal"
+                        id="cert-showcase"
+                        aria-label="Certificate showcase"
+                    >
+                        <div class="cert-main">
+                            <div class="cert-image-wrap">
+                                <img
+                                    id="cert-img"
+                                    src=""
+                                    alt=""
+                                    loading="lazy"
+                                />
+                            </div>
+                            <div class="cert-info">
+                                <div class="cert-meta">
+                                    <span
+                                        id="cert-issuer"
+                                        class="cert-issuer"
+                                    ></span>
+                                    <span
+                                        id="cert-date"
+                                        class="cert-date"
+                                    ></span>
+                                </div>
+                                <h3 id="cert-title" class="cert-title"></h3>
+                                <p id="cert-desc" class="cert-desc"></p>
+                                <div class="cert-actions">
+                                    <a
+                                        id="cert-view"
+                                        href="#"
+                                        class="button button-primary"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        aria-label="View certificate"
+                                        >View Certificate</a
+                                    >
+                                    <a
+                                        id="cert-download"
+                                        href="#"
+                                        class="button button-secondary"
+                                        download
+                                        aria-label="Download certificate"
+                                        >Download</a
+                                    >
+                                </div>
+                            </div>
+                        </div>
+                        <div class="cert-controls" id="cert-controls">
+                            <button
+                                type="button"
+                                class="cert-btn"
+                                id="cert-prev"
+                                aria-label="Previous certificate"
+                            >
+                                &#8592;
+                            </button>
+                            <span
+                                class="cert-indicator"
+                                id="cert-indicator"
+                                aria-live="polite"
+                                aria-atomic="true"
+                                >1 / 1</span
+                            >
+                            <button
+                                type="button"
+                                class="cert-btn"
+                                id="cert-next"
+                                aria-label="Next certificate"
+                            >
+                                &#8594;
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             <section
                 id="contact"
                 class="contact section"
@@ -286,20 +478,19 @@
             >
                 <div class="container">
                     <div class="section-header reveal">
-                        <span class="section-label"> Contact </span>
-                        <h2 id="contact-title">Let's Work Together</h2>
+                        <span class="section-label">Contact</span>
+                        <h2 id="contact-title">Let&#8217;s Work Together</h2>
                     </div>
                     <div class="contact-content">
                         <address class="contact-info">
-                            <ul>
+                            <ul role="list">
                                 <li class="contact-item reveal">
                                     <span>Email</span>
                                     <a
                                         href="mailto:bahruzmammadly@gmail.com"
-                                        aria-label="Send email to Bahruz Mammadov"
+                                        aria-label="Send email to Bahruz Mammadov at bahruzmammadly@gmail.com"
+                                        >bahruzmammadly@gmail.com</a
                                     >
-                                        bahruzmammadly@gmail.com
-                                    </a>
                                 </li>
                                 <li class="contact-item reveal">
                                     <span>GitHub</span>
@@ -307,10 +498,9 @@
                                         href="https://github.com/bahruzmammad"
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        aria-label="Visit Bahruz Mammadov GitHub profile"
+                                        aria-label="Bahruz Mammadov on GitHub (opens in new tab)"
+                                        >@bahruzmammad</a
                                     >
-                                        @bahruzmammad
-                                    </a>
                                 </li>
                                 <li class="contact-item reveal">
                                     <span>LinkedIn</span>
@@ -318,10 +508,9 @@
                                         href="https://www.linkedin.com/in/bahruzmammad"
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        aria-label="Visit Bahruz Mammadov LinkedIn profile"
+                                        aria-label="Bahruz Mammadov on LinkedIn (opens in new tab)"
+                                        >@bahruzmammad</a
                                     >
-                                        @bahruzmammad
-                                    </a>
                                 </li>
                                 <li class="contact-item reveal">
                                     <span>Twitter</span>
@@ -329,20 +518,18 @@
                                         href="https://twitter.com/bahruzmammad"
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        aria-label="Visit Bahruz Mammadov Twitter profile"
+                                        aria-label="Bahruz Mammadov on X / Twitter (opens in new tab)"
+                                        >@bahruzmammad</a
                                     >
-                                        @bahruzmammad
-                                    </a>
                                 </li>
                                 <li class="contact-item reveal">
                                     <span>CV</span>
                                     <a
-                                        href="asserts/cv/Bahruz-Mammadov-CV.pdf"
+                                        href="assets/cv/Bahruz-Mammadov-CV.pdf"
                                         download="Bahruz-Mammadov-CV.pdf"
                                         aria-label="Download Bahruz Mammadov CV as PDF"
+                                        >Download CV</a
                                     >
-                                        Download CV
-                                    </a>
                                 </li>
                             </ul>
                         </address>
@@ -352,9 +539,10 @@
                             action="https://formspree.io/f/xoeqywza"
                             method="POST"
                             aria-label="Contact form"
+                            novalidate
                         >
                             <div class="form-group">
-                                <label for="name"> Name </label>
+                                <label for="name">Name</label>
                                 <input
                                     type="text"
                                     id="name"
@@ -362,10 +550,11 @@
                                     placeholder="Your name"
                                     autocomplete="name"
                                     required
+                                    minlength="2"
                                 />
                             </div>
                             <div class="form-group">
-                                <label for="email"> Email </label>
+                                <label for="email">Email</label>
                                 <input
                                     type="email"
                                     id="email"
@@ -376,43 +565,48 @@
                                 />
                             </div>
                             <div class="form-group">
-                                <label for="message"> Message </label>
+                                <label for="message">Message</label>
                                 <textarea
                                     id="message"
                                     name="message"
                                     rows="6"
-                                    placeholder="Write your message..."
+                                    placeholder="Write your message&#8230;"
                                     required
+                                    minlength="10"
                                 ></textarea>
                             </div>
                             <button type="submit" class="contact-button">
-                                Send Message →
+                                Send Message &#8594;
                             </button>
                             <p
                                 class="form-status"
                                 aria-live="polite"
                                 aria-atomic="true"
+                                role="status"
                             ></p>
                         </form>
                     </div>
                 </div>
             </section>
         </main>
-        <footer class="footer">
+
+        <footer class="footer" role="contentinfo">
             <div class="container">
-                <p>© 2026 Bahruz. All rights reserved.</p>
-                <div class="footer-socials" aria-label="Social links">
+                <p>&#169; 2026 Bahruz Mammadov. All rights reserved.</p>
+                <nav class="footer-socials" aria-label="Social media links">
                     <a
                         href="https://github.com/bahruzmammad"
                         target="_blank"
                         rel="noopener noreferrer"
-                        aria-label="GitHub"
+                        aria-label="Bahruz Mammadov on GitHub (opens in new tab)"
                         title="GitHub"
                     >
                         <svg
                             viewBox="0 0 24 24"
                             aria-hidden="true"
                             focusable="false"
+                            width="17"
+                            height="17"
                         >
                             <path
                                 fill="currentColor"
@@ -424,13 +618,15 @@
                         href="https://www.linkedin.com/in/bahruzmammad"
                         target="_blank"
                         rel="noopener noreferrer"
-                        aria-label="LinkedIn"
+                        aria-label="Bahruz Mammadov on LinkedIn (opens in new tab)"
                         title="LinkedIn"
                     >
                         <svg
                             viewBox="0 0 24 24"
                             aria-hidden="true"
                             focusable="false"
+                            width="17"
+                            height="17"
                         >
                             <path
                                 fill="currentColor"
@@ -442,13 +638,15 @@
                         href="https://twitter.com/bahruzmammad"
                         target="_blank"
                         rel="noopener noreferrer"
-                        aria-label="X / Twitter"
+                        aria-label="Bahruz Mammadov on X / Twitter (opens in new tab)"
                         title="X / Twitter"
                     >
                         <svg
                             viewBox="0 0 24 24"
                             aria-hidden="true"
                             focusable="false"
+                            width="17"
+                            height="17"
                         >
                             <path
                                 fill="currentColor"
@@ -456,10 +654,11 @@
                             />
                         </svg>
                     </a>
-                </div>
+                </nav>
             </div>
         </footer>
+
         <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-        <script src="asserts/js/script.js"></script>
+        <script src="assets/js/script.js"></script>
     </body>
 </html>
