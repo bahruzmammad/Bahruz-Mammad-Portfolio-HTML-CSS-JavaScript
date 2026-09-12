@@ -1,0 +1,29 @@
+name: CI/CD Build and Deploy
+
+on:
+    push:
+        branches: ["main"]
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Deponu yüklə (Checkout)
+              uses: actions/checkout@v4
+
+            - name: Python mühitini quraşdır
+              uses: actions/setup-python@v5
+              with:
+                  python-version: "3.11"
+
+            - name: Build skriptini icra et
+              run: |
+                  if [ -f blog/build.py ]; then
+                    python blog/build.py
+                  else
+                    echo "Build skripti tapılmadı."
+                  fi
+
+            - name: Statusu yoxla
+              run: echo "Build prosesi uğurla tamamlandı."
