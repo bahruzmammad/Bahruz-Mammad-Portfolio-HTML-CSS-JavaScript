@@ -14,6 +14,8 @@ $(function () {
   const $contactForm = $("#contact-form");
   const $contactButton = $(".contact-button");
   const $formStatus = $(".form-status");
+  const $menuToggle = $("#menu-toggle");
+  const $mainMenu = $("#main-menu");
 
   const DESKTOP_BREAKPOINT = 1024;
   const MOBILE_BREAKPOINT = 800;
@@ -978,6 +980,94 @@ $(function () {
     });
   }
 
+  function setupMobileNavigation() {
+    if (!$menuToggle.length || !$mainMenu.length) return;
+
+    function setMenuState(isOpen, restoreFocus) {
+      $menuToggle.toggleClass("is-open", isOpen);
+      $mainMenu.toggleClass("is-open", isOpen);
+
+      $menuToggle.attr("aria-expanded", String(isOpen));
+
+      $menuToggle.attr(
+        "aria-label",
+        isOpen ? "Close navigation menu" : "Open navigation menu",
+      );
+
+      $menuToggle.attr(
+        "title",
+        isOpen ? "Close navigation menu" : "Open navigation menu",
+      );
+
+      if (restoreFocus) {
+        $menuToggle.trigger("focus");
+      }
+    }
+
+    function closeMenu(restoreFocus) {
+      setMenuState(false, restoreFocus);
+    }
+
+    function toggleMenu(event) {
+      event.preventDefault();
+      event.stopPropagation();
+
+      if (!isMobile()) {
+        closeMenu(false);
+        return;
+      }
+
+      setMenuState(!$mainMenu.hasClass("is-open"), false);
+    }
+
+    $menuToggle.off("click.mobileNavigation");
+    $navLinks.off("click.mobileNavigation");
+    $window.off("resize.mobileNavigation");
+    $(document).off("click.mobileNavigation");
+    $(document).off("keydown.mobileNavigation");
+
+    $menuToggle.on("click.mobileNavigation", toggleMenu);
+
+    $navLinks.on("click.mobileNavigation", function () {
+      if (isMobile()) {
+        closeMenu(false);
+      }
+    });
+
+    $window.on("resize.mobileNavigation", function () {
+      if (!isMobile()) {
+        closeMenu(false);
+      }
+    });
+
+    $(document).on("click.mobileNavigation", function (event) {
+      if (!isMobile()) return;
+      if (!$mainMenu.hasClass("is-open")) return;
+
+      const target = event.target;
+
+      if (
+        $menuToggle.is(target) ||
+        $menuToggle.has(target).length ||
+        $mainMenu.is(target) ||
+        $mainMenu.has(target).length
+      ) {
+        return;
+      }
+
+      closeMenu(false);
+    });
+
+    $(document).on("keydown.mobileNavigation", function (event) {
+      if (event.key !== "Escape") return;
+      if (!$mainMenu.hasClass("is-open")) return;
+
+      closeMenu(true);
+    });
+
+    setMenuState($mainMenu.hasClass("is-open"), false);
+  }
+
   function handleScroll() {
     if (ticking) return;
     ticking = true;
@@ -1033,6 +1123,7 @@ $(function () {
 
   function initialize() {
     initializeTheme();
+    setupMobileNavigation();
     applySkillVisibility();
     renderEducation();
     updateAboutHeight();
