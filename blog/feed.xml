@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+<channel>
+    <title>Blog</title>
+    <link>https://blog.bahruzmammad.github.io/</link>
+    <description>Portfolio Blog</description>
+    <item>
+        <title>Java Main Method</title>
+        <link>https://blog.bahruzmammad.github.io/hello-java/</link>
+        <guid>https://blog.bahruzmammad.github.io/hello-java/</guid>
+        <description>Understanding the Java main method and the structure of a simple Java program.</description>
+    </item>
+    <item>
+        <title>Hello World</title>
+        <link>https://blog.bahruzmammad.github.io/hello/</link>
+        <guid>https://blog.bahruzmammad.github.io/hello/</guid>
+        <description>A first test post for my Markdown blog.</description>
+    </item>
+</channel>
+</rss>
