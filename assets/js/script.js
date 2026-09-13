@@ -126,11 +126,11 @@ $(function () {
   const PROJECT_OVERRIDES = {};
 
   const SKILL_GROUP_VISIBILITY = {
-    Backend: true,
+    Backend: false,
     Frontend: true,
-    Database: true,
-    "Software Engineering": true,
-    Other: true,
+    Database: false,
+    "Software Engineering": false,
+    Other: false,
   };
 
   const SKILL_VISIBILITY = {
